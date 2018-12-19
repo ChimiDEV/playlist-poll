@@ -32,10 +32,10 @@ class SpotifyClient {
     }
   }
 
-  async search(query, type) {
+  async search(query, type, limit) {
     const url = `${this.baseURL}/search?q=${encodeURIComponent(query)}&type=${encodeURIComponent(
       type
-    )}&market=${this.locale}`;
+    )}&market=${this.locale}&limit=${limit}`;
     try {
       const response = await request.get(url, {
         auth: {
@@ -77,6 +77,11 @@ module.exports.search = async ctx => {
   if (!search) {
     ctx.throw(500, `Missing search query`);
   }
-  const spotifyRes = await spotifyClient.search(search, 'track');
-  ctx.body = spotifyRes;
+  try {
+    const spotifyRes = await spotifyClient.search(search, 'track', 9);
+    ctx.body = spotifyRes;
+  } catch (err) {
+    ctx.throw(500, err);
+  }
+
 };

@@ -11,16 +11,23 @@ module.exports.get = async ctx => {
 };
 
 module.exports.post = async ctx => {
-  const { song, votes } = ctx.request.body;
-  if (!song || !votes) {
+  const { songID, song, votes, creator} = ctx.request.body;
+  if (!songID || !song || !votes ||!creator) {
     ctx.throw(500, `Missing song or votes property`);
   }
 
-  // TODO: Check if song already exists in DB
+  const existingSongDoc = await Song.find({songID});
+  if(existingSongDoc.length >= 1) {
+    ctx.status = 406
+    ctx.body = { success: false, msg: 'Song already is in database' };
+    return;
+  }
   
   const songDoc = new Song({
+    songID,
     song,
-    votes
+    votes,
+    creator
   });
   try {
     await songDoc.save();
@@ -37,7 +44,7 @@ module.exports.put = async ctx => {
   // Check voter against used credentials
   if (!checkUser(ctx.state.credentials, voter)) {
     ctx.status = 401;
-    ctx.body = 'Unauthorized';
+    ctx.body = { success: false, msg: 'Unauthorized' };
     return
   }
   const songDoc = await Song.findById(_id);
@@ -80,7 +87,7 @@ module.exports.delete = async ctx => {
   if (ctx.state.credentials.encoded !== process.env.API_KEY_TIM) {
     // Only Admin is allowed to delete Songs
     ctx.status = 401;
-    ctx.body = 'Unauthorized';
+    ctx.body = { success: false, msg: 'Unauthorized' };
     return;
   }
 

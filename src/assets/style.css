@@ -1,0 +1,390 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #2d2d2d;
+  font-family: 'Roboto';
+}
+
+.header {
+  background: #333333;
+  border-bottom: 1px solid #363636;
+  height: 80px;
+  width: 100%;
+}
+
+.header-title {
+  color: white;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+  margin-top: 5px;
+  margin-left: 8px;
+  margin-right: 10px;
+}
+
+.header-login {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.header-welcome {
+  color: rgba(255, 255, 255, 0.2);
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+}
+
+.header-welcome-username {
+  display: inline-block;
+  color: #55ff33;
+}
+
+.header-username,
+.header-code,
+.log-button {
+  display: inline-block;
+}
+
+/* Input style */
+:focus {
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.input-container,
+.spotify-search-container {
+  display: inline-block;
+  position: relative;
+}
+
+.spotify-search-container {
+  width: 60%;
+  margin: 10px 8px;
+}
+
+.input-underline,
+.input-spotify-search {
+  font: 11px/12px 'Lato', Arial, sans-serif;
+  color: white;
+  width: 100%;
+  box-sizing: border-box;
+  letter-spacing: 1px;
+  background-color: #333333;
+}
+
+.input-spotify-search {
+  background-color: #2d2d2d;
+  width: 100%;
+}
+
+.input-underline {
+  border: 0;
+  padding: 7px 0;
+  border-bottom: 1px solid #ccc;
+}
+.input-underline ~ .focus-border {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: #55ff33;
+  transition: 0.4s;
+}
+.input-underline:focus ~ .focus-border {
+  width: 100%;
+  transition: 0.4s;
+  left: 0;
+}
+
+/* Dropdown */
+.small {
+  font-size: 0.7em;
+}
+
+.custom-dropdown {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 10px; /* demo only */
+}
+
+.custom-dropdown select {
+  background-color: #60bd4d;
+  color: #fff;
+  font-size: inherit;
+  padding: 0.5em;
+  padding-right: 2.5em;
+  border: 0;
+  margin: 0;
+  border-radius: 3px;
+  text-indent: 0.01px;
+  text-overflow: '';
+  -webkit-appearance: button; /* hide default arrow in chrome OSX */
+}
+
+.custom-dropdown::before,
+.custom-dropdown::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+}
+
+.custom-dropdown::after {
+  /*  Custom dropdown arrow */
+  content: '\25BC';
+  height: 1em;
+  font-size: 0.625em;
+  line-height: 1;
+  right: 1.2em;
+  top: 50%;
+  margin-top: -0.5em;
+}
+
+.custom-dropdown::before {
+  /*  Custom dropdown arrow cover */
+  width: 2em;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 0 3px 3px 0;
+}
+
+.custom-dropdown select[disabled] {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.custom-dropdown select[disabled]::after {
+  color: rgba(0, 0, 0, 0.1);
+}
+
+.custom-dropdown::before {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.custom-dropdown::after {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+/* Button */
+.btn {
+  border-radius: 3px;
+  padding: 6px 12px;
+  font-size: 12px;
+  text-decoration: none;
+  margin: 20px;
+  color: #fff;
+  position: relative;
+  display: inline-block;
+}
+
+.btn-spotify-search {
+  display: inline-block;
+}
+
+.green {
+  background-color: #60bd4d;
+}
+
+.disabled {
+  background-color: #555555;
+  cursor: default;
+}
+
+/* Spotify Result Boxes */
+.body-header {
+  color: white;
+  font-weight: bold;
+}
+
+.spotify-results-container,
+.poll-container {
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 300px;
+  width: 340px;
+  margin: 5px auto;
+  border: 1px solid #60bd4d55;
+}
+
+.body-container {
+  margin-left: 8px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.spotify-result,
+.poll {
+  color: white;
+  width: 320px;
+  height: 80px;
+  margin: 5px auto;
+  background-color: #555555;
+  box-shadow: 0px 0px 2px #000;
+}
+
+.spotify-result-thumbnail,
+.poll-thumbnail {
+  cursor: pointer;
+  position: relative;
+  float: left;
+  margin-top: 8px;
+  margin-left: 5px;
+  margin-right: 5px;
+  border: 1px solid #363636;
+  height: 64px;
+}
+
+.spotify-result-thumbnail:hover,
+.spotify-result-thumbnail:active,
+.poll-thumbnail:hover,
+.poll-thumbnail:active {
+  box-shadow: 0px 0px 2px #000;
+}
+
+.spotify-result-data,
+.poll-data  {
+  margin-top: 5px;
+}
+
+.spotify-result-artist,
+.poll-artist {
+  font-size: 0.6rem;
+}
+
+.spotify-result-album,
+.poll-album {
+  font-size: 0.6rem;
+}
+
+.spotify-result-title,
+.poll-title {
+  font-weight: bold;
+}
+
+.spotify-result-add {
+  cursor: pointer;
+  font-size: .8rem;
+}
+
+.spotify-result-add:hover,
+.spotify-result-add:active {
+  color: #55ff33;
+}
+
+/* Poll */
+.poll-creator {
+  color: #55ff33;
+  font-size: .8rem;
+}
+
+.poll-vote-container {
+  float: right;
+  margin-top: -45px;
+  margin-right: 6px;
+}
+
+.poll-vote-counter {
+  text-align: center;
+  letter-spacing: -1px;
+}
+
+.poll-vote-counter.disabled {
+  color: #363636EE;
+}
+
+
+.up,
+.down {
+  cursor: pointer;
+}
+
+.up.disabled,
+.down.disabled {
+  color: #36363666;
+}
+
+.up.disabled:hover,
+.down.disabled:hover {
+  color: #36363666;
+  cursor: default;
+}
+
+.up:hover {
+  color: #55ff33;
+}
+
+
+.down:hover {
+  color: crimson;
+}
+
+/* Play Button */
+.play-button {
+  cursor: pointer;
+  position: absolute;
+  top: 28%;
+  left: 35%;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 1em 0 1em 1.5em;
+  border-color: transparent transparent transparent #55ff33c5;
+
+}
+
+.play-button-outer:hover {
+  background-color: rgba(0, 0, 0, .5);
+}
+
+.play-button-outer:hover .play-button {
+  opacity: 1;
+}
+
+/* Responsive */
+
+@media only screen and (min-width: 600px) {
+
+  .spotify-results-container,
+  .poll-container {
+    margin: 5px 8px;
+  }
+
+  .header {
+    height: 60px;
+  }
+  .header-title {
+    line-height: 50px;
+    width: auto;
+  }
+  .header-welcome {
+    float: right;
+    width: auto;
+  }
+
+  .header-login {
+    float: right;
+    width: auto;
+  }
+}
+
+@media only screen and (min-width: 980px) {
+  .spotify-results-container,
+  .poll-container {
+    overflow-y: hidden;
+    /* width: 450px; */
+    height: auto;
+    border: 0;
+  }
+}
+
+@media only screen and (min-width: 1260px) {
+}

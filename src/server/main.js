@@ -46,6 +46,14 @@ app.use(cors());
 app.use(bodyParser());
 
 app.use(async (ctx, next) => {
+  if (ctx.path === '/api/login') {
+    return next();
+  }
+
+  if (ctx.method === 'GET' && ctx.path === '/api/songs') {
+    return next();
+  }
+
   const appCredentials = ctx.request.header['x-app-credentials'];
   if (appCredentials) {
     const buffer = new Buffer(appCredentials, 'base64');
@@ -57,11 +65,23 @@ app.use(async (ctx, next) => {
     }
   }
   ctx.status = 401;
-  ctx.body = 'Unauthorized';
+  ctx.body = { success: false, msg: 'Unauthorized' };
 });
 
 /* Routes */
 const router = new Router();
+router.post('/api/login', async ctx => {
+  const { username, code } = ctx.request.body;
+  const buffer = new Buffer(`${username}${process.env.AUTH_SEPERATOR}${code}`);
+  const appCredentials = buffer.toString('base64');
+  if (global.KEYS.includes(appCredentials)) {
+    ctx.body = { success: true, token: appCredentials };
+    return;
+  }
+  ctx.status = 401;
+  ctx.body = { success: false, msg: 'Unauthorized' };
+});
+app.use(router.routes());
 app.use(router.allowedMethods());
 
 const songRouter = require('./router/song-router');

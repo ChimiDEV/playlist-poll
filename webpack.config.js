@@ -6,7 +6,7 @@ const outputDir = 'dist';
 
 module.exports = {
   // Entry to main React JS file
-  entry: './src/client/main.js',
+  entry: ['@babel/polyfill', './src/client/main.js'],
   output: {
     path: path.join(__dirname, outputDir),
     filename: 'bundle.js'
