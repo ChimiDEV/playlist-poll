@@ -46,7 +46,12 @@ app.use(cors());
 app.use(bodyParser());
 
 app.use(async (ctx, next) => {
-  if (ctx.path === '/api/login') {
+  if (
+    ctx.path === '/api/login' ||
+    ctx.path === '/' ||
+    ctx.path === '/favicon.ico' ||
+    ctx.path === '/bundle.js'
+  ) {
     return next();
   }
 
