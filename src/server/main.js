@@ -108,4 +108,4 @@ app.on('error', (err, ctx) => {
   console.log(err);
 });
 
-app.listen(8080, () => console.log(`Listening on http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
