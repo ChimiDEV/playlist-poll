@@ -6,11 +6,12 @@ const cors = require('@koa/cors');
 const Router = require('koa-router');
 const logger = require('koa-logger');
 const bodyParser = require('koa-bodyparser');
+require('dotenv').config();
 
 const PORT = process.env.PORT || 8080;
 const app = new Koa();
 
-require('dotenv').config();
+
 global.KEYS = [];
 [
   'API_KEY_TIM',
