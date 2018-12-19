@@ -7,7 +7,7 @@ const Router = require('koa-router');
 const logger = require('koa-logger');
 const bodyParser = require('koa-bodyparser');
 
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 const app = new Koa();
 
 require('dotenv').config();
