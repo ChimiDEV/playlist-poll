@@ -80,6 +80,7 @@ export default class App extends Component {
       if (success) {
         this.setState({ isLoggedIn: true });
         sessionStorage.setItem('playlist-auth-token', JSON.stringify({ username, code, token }));
+        this.emitter.emit('updateData');
         console.log('Logged in');
       }
     } catch (err) {
@@ -99,10 +100,6 @@ export default class App extends Component {
     if (!sessionAuthDetails) {
       return;
     }
-
-    this.emitter.on('updateData', () => {
-      console.log('Retrieve new Data from server')
-    });
 
     const { username, code } = JSON.parse(sessionAuthDetails);
     this.setState({ username, uniqueCode: code, isLoggedIn: true });

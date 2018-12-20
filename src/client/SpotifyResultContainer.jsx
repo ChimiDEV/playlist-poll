@@ -32,7 +32,7 @@ export default class SpotifyResultContainer extends Component {
       playURL: external_urls.spotify
     };
     try {
-      await axios.post(
+      const res = await axios.post(
         'http://localhost:8080/api/songs',
         {
           songID,
@@ -43,10 +43,15 @@ export default class SpotifyResultContainer extends Component {
         { headers: { 'x-app-credentials': token } }
       );
       this.props.emitter.emit('updateData');
-      NotificationManager.success('Dein Lied wurde hinzugefügt 🔥', 'Playlist Poll');
+      if (res.status === 201) {
+        NotificationManager.info('Dieses Lied wurde bereits hinzugefügt. Es bekommt ein Upvote von dir 🔥', 'Playlist Poll');
+      } else {
+        NotificationManager.success('Dein Lied wurde hinzugefügt 🔥', 'Playlist Poll');
+      }
     } catch (err) {
       if(err.response.status === 406) {
-        NotificationManager.error('Dieses Lied wurde bereits hinzugefügt.', 'Fehler');
+        NotificationManager.error('Dieses Lied wurde bereits hinzugefügt und von dir gevoted.', 'Fehler');
+        this.props.emitter.emit('updateData');
       } else {
         NotificationManager.error('Interner Fehler - Hau Tim 😋', 'Fehler');
       }
