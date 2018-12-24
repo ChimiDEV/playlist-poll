@@ -202,16 +202,23 @@ body {
   font-weight: bold;
 }
 
+.spotify-results-container {
+  overflow-y: scroll;
+  border: 1px solid #60bd4d55;
+
+}
 .spotify-results-container,
 .poll-container {
-  overflow-y: scroll;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   height: 300px;
   width: 340px;
   margin: 5px auto;
-  border: 1px solid #60bd4d55;
+}
+
+.poll-container {
+  margin-left: -6px;
 }
 
 .body-container {
@@ -251,7 +258,7 @@ body {
 }
 
 .spotify-result-data,
-.poll-data  {
+.poll-data {
   margin-top: 5px;
 }
 
@@ -272,7 +279,7 @@ body {
 
 .spotify-result-add {
   cursor: pointer;
-  font-size: .8rem;
+  font-size: 0.8rem;
 }
 
 .spotify-result-add:hover,
@@ -283,7 +290,7 @@ body {
 /* Poll */
 .poll-creator {
   color: #55ff33;
-  font-size: .8rem;
+  font-size: 0.8rem;
 }
 
 .poll-vote-container {
@@ -298,9 +305,8 @@ body {
 }
 
 .poll-vote-counter.disabled {
-  color: #363636EE;
+  color: #363636ee;
 }
-
 
 .up,
 .down {
@@ -322,7 +328,6 @@ body {
   color: #55ff33;
 }
 
-
 .down:hover {
   color: crimson;
 }
@@ -338,11 +343,10 @@ body {
   border-style: solid;
   border-width: 1em 0 1em 1.5em;
   border-color: transparent transparent transparent #55ff33c5;
-
 }
 
 .play-button-outer:hover {
-  background-color: rgba(0, 0, 0, .5);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .play-button-outer:hover .play-button {
@@ -352,7 +356,6 @@ body {
 /* Responsive */
 
 @media only screen and (min-width: 600px) {
-
   .spotify-results-container,
   .poll-container {
     margin: 5px 8px;
