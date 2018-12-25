@@ -1,6 +1,6 @@
 import { EventEmitter } from 'events';
 import React, { Component } from 'react';
-import {NotificationContainer} from 'react-notifications';
+import { NotificationContainer } from 'react-notifications';
 import axios from 'axios';
 
 import '../assets/style.css';
@@ -62,8 +62,8 @@ export default class App extends Component {
       const res = await axios.get(`http://localhost:8080/api/spotify?search=${searchTerm}`, {
         headers: { 'x-app-credentials': token }
       });
-      console.log(res.data.tracks)
-      this.setState({searchResults: res.data.tracks.items});
+      console.log(res.data.tracks);
+      this.setState({ searchResults: res.data.tracks.items });
     } catch (err) {
       console.log(err.response);
     }
@@ -141,8 +141,8 @@ export default class App extends Component {
           </a>
         </div>
         <div className="body-container">
-          <SpotifyResultContainer searchResults={searchResults} emitter={this.emitter}/>
-          <PlaylistPollContainer isLoggedIn={isLoggedIn} emitter={this.emitter}/>
+          <SpotifyResultContainer searchResults={searchResults} emitter={this.emitter} />
+          <PlaylistPollContainer isLoggedIn={isLoggedIn} emitter={this.emitter} />
         </div>
         <NotificationContainer />
       </div>

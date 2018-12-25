@@ -21,8 +21,8 @@ module.exports.post = async ctx => {
     ctx.body = { success: false, msg: 'Song already is in database' };
     try {
       await voteSong(existingSongDoc[0], creator, true);
-      ctx.status = 201
-      ctx.body = {success: true, msg: 'You did upvote an existing document'}
+      ctx.status = 201;
+      ctx.body = { success: true, msg: 'You did upvote an existing document' };
     } catch (err) {
       ctx.status = 406;
       ctx.body = { success: false, msg: err };
@@ -58,7 +58,7 @@ module.exports.put = async ctx => {
 
   try {
     await voteSong(songDoc, voter, upvote);
-    ctx.body = {success: true, msg: 'You have voted'}
+    ctx.body = { success: true, msg: 'You have voted' };
   } catch (err) {
     ctx.status = 406;
     ctx.body = { success: false, msg: err };

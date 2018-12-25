@@ -9,11 +9,11 @@ const songSchema = new Schema({
     albumTitle: String,
     img: String,
     playURL: String,
-    duration: Number 
+    duration: Number
   },
-  votes: [{voter: String, upvote: Boolean}],
+  votes: [{ voter: String, upvote: Boolean }],
   creator: String,
-  createdAt: {type: Date, default: Date}
+  createdAt: { type: Date, default: Date }
 });
 
 module.exports = mongoose.model('Song', songSchema);

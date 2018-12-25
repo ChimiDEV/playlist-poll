@@ -11,7 +11,6 @@ require('dotenv').config();
 const PORT = process.env.PORT || 8080;
 const app = new Koa();
 
-
 global.KEYS = [];
 [
   'API_KEY_TIM',
@@ -47,12 +46,15 @@ app.use(cors());
 app.use(bodyParser());
 
 app.use(async (ctx, next) => {
-  if (
-    ctx.path === '/api/login' ||
-    ctx.path === '/' ||
-    ctx.path === '/favicon.ico' ||
-    ctx.path === '/bundle.js'
-  ) {
+  const allowedRoutes = [
+    '/',
+    '/api/login',
+    '/favicon.ico',
+    '/bundle.js',
+    '/api/spotify/authorization',
+    '/api/spotify/token'
+  ];
+  if (allowedRoutes.includes(ctx.path)) {
     return next();
   }
 

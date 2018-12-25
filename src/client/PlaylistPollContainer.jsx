@@ -21,7 +21,9 @@ export default class PlaylistPollContainer extends Component {
   async retrievePoll() {
     try {
       const res = await axios.get('http://localhost:8080/api/songs');
-      const tracks = res.data.sort((prev, curr) => this.calculateVotes(prev.votes) < this.calculateVotes(curr.votes));
+      const tracks = res.data.sort(
+        (prev, curr) => this.calculateVotes(prev.votes) < this.calculateVotes(curr.votes)
+      );
       console.log(tracks);
       this.setState({ tracks: res.data });
     } catch (err) {
