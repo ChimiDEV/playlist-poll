@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {NotificationManager} from 'react-notifications';
+import { NotificationManager } from 'react-notifications';
 import axios from 'axios';
 
 export default class SpotifyResultContainer extends Component {
@@ -44,13 +44,19 @@ export default class SpotifyResultContainer extends Component {
       );
       this.props.emitter.emit('updateData');
       if (res.status === 201) {
-        NotificationManager.info('Dieses Lied wurde bereits hinzugefügt. Es bekommt ein Upvote von dir 🔥', 'Playlist Poll');
+        NotificationManager.info(
+          'Dieses Lied wurde bereits hinzugefügt. Es bekommt ein Upvote von dir 🔥',
+          'Playlist Poll'
+        );
       } else {
         NotificationManager.success('Dein Lied wurde hinzugefügt 🔥', 'Playlist Poll');
       }
     } catch (err) {
-      if(err.response.status === 406) {
-        NotificationManager.error('Dieses Lied wurde bereits hinzugefügt und von dir gevoted.', 'Fehler');
+      if (err.response.status === 406) {
+        NotificationManager.error(
+          'Dieses Lied wurde bereits hinzugefügt und von dir gevoted.',
+          'Fehler'
+        );
         this.props.emitter.emit('updateData');
       } else {
         NotificationManager.error('Interner Fehler - Hau Tim 😋', 'Fehler');
